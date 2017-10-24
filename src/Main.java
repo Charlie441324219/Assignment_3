@@ -9,8 +9,8 @@ public class Main {
         Generator input = new Generator();
         input.generateTXT(ROW);
 
-        Reader reader = new Reader();
-        reader.readLine(1);
+//        Reader reader = new Reader();
+//        reader.readLine(1);
     }
 
 }

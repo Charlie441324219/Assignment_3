@@ -1,5 +1,11 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Generator {
 
@@ -15,8 +21,10 @@ public class Generator {
         return salt.toString() + "rule";
     }
 
-    private int generateRondomInt(){
-        return (int) (Math.random() * 100);
+    private int generateRandomInt(int i){
+        List<Integer> numbers = IntStream.rangeClosed(1, 100).boxed().collect(Collectors.toList());
+        Collections.shuffle(numbers);
+        return numbers.get(i);
     }
 
     public void generateTXT(int row) throws IOException {
@@ -26,9 +34,9 @@ public class Generator {
         outputString.write(row + " rows of rules");
         outputString.append("\n");
 
-        for (int e = 0; e < row; e ++) {
-            for (int j = 0; j < 1 + (int) (Math.random() * 5); j++) {
-                outputString.append("(").append(generateRondomString()).append(",").append(String.valueOf(generateRondomInt())).append(")");
+        for (int numberOfRow = 0; numberOfRow < row; numberOfRow ++) {
+            for (int numberOfRule = 0; numberOfRule < 1 + (int) (Math.random() * 5); numberOfRule++) {
+                outputString.append("(").append(generateRondomString()).append(",").append(String.valueOf(generateRandomInt(numberOfRule))).append(")");
             }
             outputString.append("\n");
         }
