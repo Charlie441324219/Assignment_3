@@ -7,9 +7,9 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Generator {
+class Generator {
 
-    public Generator() {
+    Generator() {
     }
 
     private String generateRondomString(){
@@ -27,7 +27,7 @@ public class Generator {
         return numbers.get(i);
     }
 
-    public void generateTXT(int row) throws IOException {
+    void generateTXT(int row) throws IOException {
         String fileName = "input.txt";
         PrintWriter outputString = new PrintWriter(fileName);
 
@@ -36,7 +36,7 @@ public class Generator {
 
         for (int numberOfRow = 0; numberOfRow < row; numberOfRow ++) {
             for (int numberOfRule = 0; numberOfRule < 1 + (int) (Math.random() * 5); numberOfRule++) {
-                outputString.append("(").append(generateRondomString()).append(",").append(String.valueOf(generateRandomInt(numberOfRule))).append(")");
+                outputString.append("(").append(generateRondomString()).append(",").append(String.valueOf(generateRandomInt(numberOfRule))).append(") ");
             }
             outputString.append("\n");
         }
