@@ -8,6 +8,9 @@ public class Rule {
         this.priority = priority;
     }
 
+    public Rule() {
+    }
+
     public String getRule() {
         return rule;
     }
