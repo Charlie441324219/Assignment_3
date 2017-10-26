@@ -1,15 +1,16 @@
 public class Heap {
     private Rule[] ruleArray;
-    private int size;
+    int size;
 
     public Heap() {
-        ruleArray = new Rule[Main.ROW * 5];
+        ruleArray = new Rule[Main.ROW * 5 + 1];
+        ruleArray[0] = null;
         size = 0;
     }
 
     private int parent(int i){
-        if(i == 0)
-            return 0;
+        if (i < 2)
+            return 1;
         else
             return i / 2;
     }
