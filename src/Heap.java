@@ -1,11 +1,11 @@
 public class Heap {
-    private Rule[] ruleArray;
+    public Rule[] ruleArray;
     int size;
 
     public Heap() {
-        ruleArray = new Rule[Main.ROW * 5 + 1];
+        ruleArray = new Rule[Main.ROW * 10 + 1];
         ruleArray[0] = null;
-        size = 0;
+        this.size = 0;
     }
 
     private int parent(int i){
@@ -34,22 +34,39 @@ public class Heap {
     }
 
     private void maxHeapify(int i){
-        if(!isLeaf(i)){
-            if(ruleArray[i].getPriority() < ruleArray[left(i)].getPriority() || ruleArray[i].getPriority() < ruleArray[right(i)].getPriority()){
-                swap(i, left(i));
-                maxHeapify(left(i));
-            }else {
-                swap(i, right(i));
-                maxHeapify(right(i));
-            }
+        int left = left(i);
+        int right = right(i);
+        int largest = i;
+
+        if(left < size && ruleArray[left].getPriority() > ruleArray[largest].getPriority())
+            largest = left;
+        if(right < size && ruleArray[right].getPriority() > ruleArray[largest].getPriority())
+            largest = right;
+
+        if(largest != i){
+            swap(i, largest);
+
+            maxHeapify(largest);
         }
+
+//        if(!isLeaf(i)){
+//            if(ruleArray[i].getPriority() < ruleArray[left(i)].getPriority() || ruleArray[i].getPriority() < ruleArray[right(i)].getPriority()) {
+//                if (ruleArray[left(i)].getPriority() > ruleArray[right(i)].getPriority()) {
+//                    swap(i, left(i));
+//                    maxHeapify(left(i));
+//                } else {
+//                    swap(i, right(i));
+//                    maxHeapify(right(i));
+//                }
+//            }
+//        }
     }
 
     public void insertRule(Rule newRule){
         ruleArray[++size] = newRule;
         int curr = size;
 
-        while (ruleArray[curr].getPriority() > ruleArray[parent(curr)].getPriority()){
+        while ((ruleArray[curr].getPriority() > ruleArray[parent(curr)].getPriority()) && (ruleArray[parent(curr)].getRule() != null)){
             swap(curr, parent(curr));
             curr = parent(curr);
         }

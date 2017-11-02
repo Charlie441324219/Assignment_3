@@ -1,7 +1,7 @@
 
 public class Rule {
-    private String rule;
-    private int priority;
+    public String rule;
+    public int priority;
 
     public Rule(String rule, int priority) {
         this.rule = rule;
