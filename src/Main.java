@@ -5,18 +5,21 @@ public class Main {
 
     final static int ROW = 600;
 
-
     public static void main(String[] args) throws Exception {
+
+//        Generator generator = new Generator();
+//        generator.generateTXT(30);
+
+        int counter = 1;
 
         Reader reader = new Reader();
 
         String[] inputfile = reader.read_file();
 
         Heap heap = new Heap();
+        long startTime = System.currentTimeMillis();
 
         for (int line = 0; line < inputfile.length; line++) {
-
-            System.out.println("Input line " + (line+1) + " : " + inputfile[line]);
 
             String[] detectElementInLine = inputfile[line].split("\\)");
             int size = detectElementInLine.length;
@@ -42,11 +45,41 @@ public class Main {
                     newRuleInput.setPriority(priority);
                 }
                 heap.insertRule(newRuleInput);
-                heap.maxHeap();
+
+
             }
+            if(counter > 30)
+                break;
+            System.out.println("====Rulse in Agenda====");
+            for(int j = 1; j <= heap.size; j++)
+                System.out.print("(" + heap.ruleArray[j].getRule() + ", " + heap.ruleArray[j].getPriority() + ")");
+            System.out.println("\n");
+            heap.maxHeap();
+            System.out.println("=======================");
 
             Rule maxValue = heap.popMaxRule();
-            System.out.println("The max val popped is : " + "(" + maxValue.getRule() + "," + maxValue.getPriority() + ")");
+            System.out.println("Cycle " + counter + " : " + "(" + maxValue.getRule() + "," + maxValue.getPriority() + ")");
+            counter++;
+            System.out.println("\n");
+            System.out.println("\n");
         }
+
+        while (heap.size != 0){
+            if(counter > 30)
+                break;
+            System.out.println("====Rulse in Agenda====");
+            for(int j = 1; j <= heap.size; j++)
+                System.out.print("(" + heap.ruleArray[j].getRule() + ", " + heap.ruleArray[j].getPriority() + ")");
+            System.out.println("\n");
+            heap.maxHeap();
+            System.out.println("=======================");
+            Rule maxValue = heap.popMaxRule();
+            System.out.println("Cycle " + counter + " : " + "(" + maxValue.getRule() + "," + maxValue.getPriority() + ")");
+            counter++;
+            System.out.println("\n");
+            System.out.println("\n");
+        }
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println("Elapsed Time : " + elapsedTime + " ms ");
     }
 }

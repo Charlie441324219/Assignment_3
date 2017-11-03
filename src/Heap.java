@@ -45,21 +45,8 @@ public class Heap {
 
         if(largest != i){
             swap(i, largest);
-
             maxHeapify(largest);
         }
-
-//        if(!isLeaf(i)){
-//            if(ruleArray[i].getPriority() < ruleArray[left(i)].getPriority() || ruleArray[i].getPriority() < ruleArray[right(i)].getPriority()) {
-//                if (ruleArray[left(i)].getPriority() > ruleArray[right(i)].getPriority()) {
-//                    swap(i, left(i));
-//                    maxHeapify(left(i));
-//                } else {
-//                    swap(i, right(i));
-//                    maxHeapify(right(i));
-//                }
-//            }
-//        }
     }
 
     public void insertRule(Rule newRule){

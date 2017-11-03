@@ -28,14 +28,14 @@ class Generator {
     }
 
     void generateTXT(int row) throws IOException {
-        String fileName = "input.txt";
+        String fileName = "input6.txt";
         PrintWriter outputString = new PrintWriter(fileName);
 
         outputString.write(row + " rows of rules");
         outputString.append("\n");
 
         for (int numberOfRow = 0; numberOfRow < row; numberOfRow ++) {
-            for (int numberOfRule = 0; numberOfRule < 1 + (int) (Math.random() * 5); numberOfRule++) {
+            for (int numberOfRule = 0; numberOfRule < 120; numberOfRule++) {
                 outputString.append("(").append(generateRondomString()).append(",").append(String.valueOf(generateRandomInt(numberOfRule))).append(") ");
             }
             outputString.append("\n");
